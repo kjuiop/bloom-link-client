@@ -189,59 +189,50 @@ type Order = typeof orders[number];
 
 function OrderTable({ data }: { data: Order[] }) {
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-xs min-w-[900px]">
+    <div className="overflow-x-auto rounded-lg border border-gray-200">
+      <table className="w-full text-xs min-w-[900px] border-collapse">
         <thead>
-          <tr className="bg-rose-100 text-gray-900">
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap">주문번호</th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap">확인</th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap leading-5">
-              주문접수일<br />배송요구일
-            </th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap">수주화원</th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap leading-5">
-              상품명<br />배송지<br />보내는분
-            </th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap leading-5">
-              원청금액<br />발주금액
-            </th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap">팩스전송</th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap">배송현황</th>
-            <th className="px-3 py-2.5 text-center text-[13px] font-bold border-b border-rose-200 whitespace-nowrap leading-5">
-              배송사진<br />인수자
-            </th>
+          <tr className="bg-gray-800 text-white">
+            {['주문번호', '확인', '주문접수일\n배송요구일', '수주화원', '상품명\n배송지\n보내는분', '원청금액\n발주금액', '팩스전송', '배송현황', '배송사진\n인수자'].map((label) => (
+              <th key={label} className="px-4 py-3 text-center text-[12px] font-semibold whitespace-pre-line leading-5 border-r border-gray-700 last:border-r-0">
+                {label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {data.map((order, i) => (
-            <tr key={order.id} className={`border-b-2 border-gray-200 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
-              <td className="px-3 py-2.5 text-center text-gray-500 whitespace-nowrap">{order.id}</td>
-              <td className="px-3 py-2.5 text-center">
+            <tr
+              key={order.id}
+              className={`border-t border-gray-100 hover:bg-rose-50/60 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/60'}`}
+            >
+              <td className="px-4 py-3 text-center text-gray-400 whitespace-nowrap font-mono text-[11px]">{order.id}</td>
+              <td className="px-4 py-3 text-center">
                 <CheckSquare className={`h-4 w-4 mx-auto ${order.confirmed ? 'text-rose-400' : 'text-gray-200'}`} />
               </td>
-              <td className="px-3 py-2.5 text-center whitespace-nowrap">
-                <p>{order.receivedDate}</p>
-                <p className="text-rose-400 font-medium">{order.deliveryDate}</p>
+              <td className="px-4 py-3 text-center whitespace-nowrap leading-5">
+                <p className="text-gray-400">{order.receivedDate}</p>
+                <p className="text-rose-500 font-semibold">{order.deliveryDate}</p>
               </td>
-              <td className="px-3 py-2.5 text-center font-medium text-gray-700 whitespace-nowrap">{order.supplier}</td>
-              <td className="px-3 py-2.5">
-                <p className="font-medium text-gray-800">{order.product}</p>
+              <td className="px-4 py-3 text-center font-medium text-gray-700 whitespace-nowrap">{order.supplier}</td>
+              <td className="px-4 py-3 leading-5">
+                <p className="font-semibold text-gray-800">{order.product}</p>
                 <p className="text-gray-400 truncate max-w-[160px]">{order.address}</p>
                 <p className="text-gray-500">{order.sender}</p>
               </td>
-              <td className="px-3 py-2.5 text-center whitespace-nowrap">
-                <p className="text-gray-400 line-through">{order.originalPrice}</p>
-                <p className="font-semibold text-gray-700">{order.orderPrice}</p>
+              <td className="px-4 py-3 text-center whitespace-nowrap leading-5">
+                <p className="text-gray-300 line-through">{order.originalPrice}</p>
+                <p className="font-bold text-gray-700">{order.orderPrice}</p>
               </td>
-              <td className="px-3 py-2.5 text-center">
+              <td className="px-4 py-3 text-center">
                 <Printer className={`h-4 w-4 mx-auto ${order.faxSent ? 'text-blue-400' : 'text-gray-200'}`} />
               </td>
-              <td className="px-3 py-2.5 text-center">
-                <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${deliveryStatusColor[order.deliveryStatus] ?? 'bg-gray-100 text-gray-500'}`}>
+              <td className="px-4 py-3 text-center">
+                <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${deliveryStatusColor[order.deliveryStatus] ?? 'bg-gray-100 text-gray-500'}`}>
                   {order.deliveryStatus}
                 </span>
               </td>
-              <td className="px-3 py-2.5 text-center whitespace-nowrap">
+              <td className="px-4 py-3 text-center whitespace-nowrap leading-5">
                 <ImageIcon className={`h-4 w-4 mx-auto ${order.hasPhoto ? 'text-green-400' : 'text-gray-200'}`} />
                 {order.recipient && <p className="text-gray-500 mt-0.5">{order.recipient}</p>}
               </td>
