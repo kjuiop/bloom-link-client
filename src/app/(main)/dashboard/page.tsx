@@ -97,8 +97,8 @@ const receivedOrders = [
   {
     id: 'RCV-0183',
     confirmed: false,
-    receivedDate: '03.17',
-    deliveryDate: '03.18',
+    receivedDate: '26-03-17 13:05',
+    deliveryDate: '26-03-18 10시 발인',
     supplier: '강남꽃도매',
     product: '근조화환 3단',
     address: '서울 강남구 선릉로 100',
@@ -113,8 +113,8 @@ const receivedOrders = [
   {
     id: 'RCV-0182',
     confirmed: true,
-    receivedDate: '03.17',
-    deliveryDate: '03.17',
+    receivedDate: '26-03-17 10:22',
+    deliveryDate: '26-03-17 14시 예식',
     supplier: '종로화원',
     product: '축하화환 1단',
     address: '서울 종로구 인사동 50',
@@ -129,8 +129,8 @@ const receivedOrders = [
   {
     id: 'RCV-0181',
     confirmed: true,
-    receivedDate: '03.17',
-    deliveryDate: '03.17',
+    receivedDate: '26-03-17 08:47',
+    deliveryDate: '26-03-17 11시 개업',
     supplier: '강남꽃도매',
     product: '개업화환 2단',
     address: '서울 서초구 방배동 88',
@@ -145,8 +145,8 @@ const receivedOrders = [
   {
     id: 'RCV-0180',
     confirmed: true,
-    receivedDate: '03.16',
-    deliveryDate: '03.16',
+    receivedDate: '26-03-16 15:11',
+    deliveryDate: '26-03-16 18시 발인',
     supplier: '종로화원',
     product: '근조화환 1단',
     address: '서울 중구 을지로 55',
@@ -161,8 +161,8 @@ const receivedOrders = [
   {
     id: 'RCV-0179',
     confirmed: true,
-    receivedDate: '03.16',
-    deliveryDate: '03.16',
+    receivedDate: '26-03-16 09:03',
+    deliveryDate: '26-03-16 13시 졸업식',
     supplier: '강남꽃도매',
     product: '졸업화환',
     address: '서울 성북구 안암동 5',
@@ -214,7 +214,7 @@ function OrderTable({ data }: { data: Order[] }) {
         </thead>
         <tbody>
           {data.map((order, i) => (
-            <tr key={order.id} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+            <tr key={order.id} className={`border-b-2 border-gray-200 last:border-0 ${i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
               <td className="px-3 py-2.5 text-center text-gray-500 whitespace-nowrap">{order.id}</td>
               <td className="px-3 py-2.5 text-center">
                 <CheckSquare className={`h-4 w-4 mx-auto ${order.confirmed ? 'text-rose-400' : 'text-gray-200'}`} />
