@@ -1,0 +1,3 @@
+export default function NewOrderPage() {
+  return <div className="p-6"><h1 className="text-2xl font-bold">발주 등록</h1></div>;
+}
