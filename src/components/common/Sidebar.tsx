@@ -66,7 +66,7 @@ const navSections = [
   },
 ];
 
-export function Sidebar() {
+export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   const isActive = (href: string) =>
@@ -87,6 +87,7 @@ export function Sidebar() {
                 <Link
                   key={href}
                   href={href}
+                  onClick={onNavigate}
                   className={cn(
                     'flex items-center gap-2.5 px-2 py-1.5 rounded-md text-sm transition-colors',
                     isActive(href)
