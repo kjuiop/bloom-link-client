@@ -34,7 +34,7 @@ export default function LoginPage() {
     // TODO: API 연동
     console.log(data);
     await new Promise((r) => setTimeout(r, 800));
-    router.push('/buyer/dashboard');
+    router.push('/');
   };
 
   return (
